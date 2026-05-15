@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codenames Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="signalCanvas" aria-hidden="true"></canvas>
+  <main class="game-shell">
+    <section class="topbar" aria-label="Game controls">
+      <div>
+        <p class="eyebrow">Codenames</p>
+        <h1>Field Board</h1>
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-button" id="newGameButton" type="button" title="New game" aria-label="New game">
+          <span aria-hidden="true">N</span>
+        </button>
+        <button class="icon-button" id="spymasterButton" type="button" title="Toggle spymaster view" aria-label="Toggle spymaster view" aria-pressed="false">
+          <span aria-hidden="true">S</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="score-strip" aria-label="Scoreboard">
+      <article class="team-panel red" id="redPanel">
+        <div>
+          <span>Red</span>
+          <strong id="redRemaining">0</strong>
+        </div>
+        <small>remaining</small>
+      </article>
+      <article class="turn-panel" aria-live="polite">
+        <span id="turnLabel">Red turn</span>
+        <strong id="turnCount">0 picks left</strong>
+      </article>
+      <article class="team-panel blue" id="bluePanel">
+        <div>
+          <span>Blue</span>
+          <strong id="blueRemaining">0</strong>
+        </div>
+        <small>remaining</small>
+      </article>
+    </section>
+
+    <section class="play-area">
+      <form class="clue-bar" id="clueForm" autocomplete="off">
+        <label>
+          <span>Clue</span>
+          <input id="clueInput" type="text" maxlength="24" placeholder="satellite" spellcheck="false">
+        </label>
+        <label>
+          <span>Count</span>
+          <input id="countInput" type="number" min="1" max="9" value="1">
+        </label>
+        <button type="submit">Set Clue</button>
+        <button id="passButton" type="button">Pass</button>
+      </form>
+
+      <section class="current-clue" aria-live="polite">
+        <span>Current clue</span>
+        <strong id="currentClue">None</strong>
+      </section>
+
+      <section class="board" id="board" aria-label="Codenames board"></section>
+    </section>
+
+    <section class="event-log" aria-label="Game log">
+      <div class="event-log-head">
+        <span>Log</span>
+        <button class="text-button" id="clearLogButton" type="button">Clear</button>
+      </div>
+      <ol id="logList"></ol>
+    </section>
+  </main>
+
+  <dialog id="gameDialog">
+    <div class="dialog-content">
+      <p class="eyebrow" id="dialogKicker">Game over</p>
+      <h2 id="dialogTitle">Red wins</h2>
+      <p id="dialogMessage">All agents found.</p>
+      <form method="dialog">
+        <button id="dialogCloseButton" type="submit">Close</button>
+        <button id="dialogNewGameButton" type="button">New game</button>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
